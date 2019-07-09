@@ -6,4 +6,4 @@ This repository includes the Coursera Machine learning course assignments writte
 ## Libraries Used:
 * Numpy
 * Pandas
-* MatplotLib
+* Matplotlib
