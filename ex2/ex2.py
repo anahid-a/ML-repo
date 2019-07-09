@@ -54,9 +54,14 @@ def plotDecisionBoundary(X,Y,theta):
     plt.legend()
     Boundary=(-theta[0,0]-theta[1,0]*X1)/theta[2,0]
     plt.plot(X1,Boundary)
-    plt.show()
+    #plt.show()
 
-#def prdict()
+def predict(X,Y,theta):
+    h = 1*(sigmoid(X.dot(theta))>0.5)
+    return (np.mean(Y==h))
+
+
+
 #def costFunctionReg()
 ## ==================== Part 1: Plotting ====================
 print('Loading data ...\n')
@@ -71,7 +76,7 @@ Y = np.reshape(M[:,2],(m,1))
 
 # Plot the data
 print('Plotting data with + indicating (y = 1) examples and o indicating (y = 0) examples.\n')
-plotData(X,M[:,2])
+#plotData(X,M[:,2])
 
 input('\nProgram paused. Press enter to continue.\n')
 # Normalization
@@ -87,7 +92,7 @@ learning_rate = 1
 num_iter = 2000
 theta, cost_history = GradientDescend(X,Y,theta_init,num_iter,learning_rate)
 plt.plot(np.linspace(1,num_iter,num_iter),cost_history)
-plt.show()
+#plt.show()
 theta_den = np.zeros((n+1,1))
 theta_den[0,0] = theta[0,0]-theta[1,0]*X_mean[0]/X_std[0]-theta[2,0]*X_mean[1]/X_std[1]
 theta_den[1,0] = theta[1,0]/X_std[0]
@@ -98,3 +103,9 @@ print(theta_den)
 
 plotDecisionBoundary(M[:,0:2],M[:,2],theta_den)
 
+#============== Part 4: Predict and Accuracies ==============
+test = np.array([[1],[45],[85]])
+prob = sigmoid(theta_den.T.dot(test))
+#print(prob)
+accuracy = predict(X,Y,theta)
+print(accuracy)
