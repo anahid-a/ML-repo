@@ -7,3 +7,4 @@ This repository includes the Coursera Machine learning course assignments writte
 * Numpy
 * Pandas
 * Matplotlib
+* Scipy.io
