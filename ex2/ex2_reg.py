@@ -47,7 +47,7 @@ def map_feature(x_1,x_2,m):
     x_mat_fm[:, 16] = x_1**4*x_2
     x_mat_fm[:, 17] = x_1**3*x_2**2
     x_mat_fm[:, 18] = x_1**2*x_2**3
-    x_mat_fm[:, 19] = x_1*x_1**4
+    x_mat_fm[:, 19] = x_1*x_2**4
     x_mat_fm[:, 20] = x_2**5
     x_mat_fm[:, 21] = x_1**6
     x_mat_fm[:, 22] = x_1**5*x_2
@@ -90,6 +90,11 @@ def gradient_descent(x_mat, y_mat, theta, alpha, lamda, iter):
     theta_denorm[0,0] = theta[0,0] - (theta[1:, 0]*x_mean/x_std).sum()
     theta_denorm[1:, 0] = theta[1:, 0]/x_std
     return theta_denorm, cost_history
+def prediction(x_mat, y_mat, theta):
+    estimate = 1*(sigmoid(x_mat.dot(theta))>=0.5)
+    precision = ((1*(y_mat==estimate)).sum())/y_mat.shape[0]*100
+    return precision
+
 def plot_decision_boundary(x_mat, y_mat, theta):
     """ Plot the decision boundary"""
     y_mat = np.reshape(y_mat, (y_mat.shape[0],))
@@ -137,5 +142,7 @@ def main():
     plt.show()
     #print(theta)
     plot_decision_boundary(x_mat, y_mat, theta)
+    precision = prediction(x_mat_fm, y_mat, theta)
+    print("precision is: "+str(precision)+"%" )
 if __name__ == '__main__':
     main()
