@@ -8,3 +8,7 @@ This repository includes the Coursera Machine learning course assignments writte
 * Pandas
 * Matplotlib
 * Scipy.io
+* re
+* sklearn
+* nltk.stem
+* nltk.tokenize
